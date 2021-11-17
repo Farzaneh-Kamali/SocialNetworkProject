@@ -54,6 +54,7 @@ class App extends React.Component<AppProps, AppState> {
           <Route exact path="/register" component={Register} />
           <Route exact path="/company_register" component={CompanyRegister} />
           <Route exact path="/user_register" component={UserRegister} />
+          {/*<Route exact path="/skills" component={Skills} />*/}
           <PrivateRoute exact path="/skills" component={Skills} />
           <PrivateRoute exact path="/home" component={Home} />
           <PrivateRoute exact path="/message" component={MessagePage} />

@@ -11,6 +11,7 @@ import {registerValidateSchema} from "./UserRegister.validation";
 import {useHistory} from "react-router-dom";
 import { gql } from "@apollo/client";
 import { useMutation } from "@apollo/client";
+import {User} from "../../models/User";
 
 
 interface RegisterQueryProps {
@@ -29,7 +30,7 @@ interface RegisterQueryProps {
 const USER_REGISTER_MUTATION = gql`
     mutation UserRegisterMutation($firstName: String! ,$lastName: String!, $username: String!, $description: String, 
         $title: String, $company: String, $startedAtMonth: String, $startedAtYear: String, $finishedAtMonth: String, $finishedAtYear: String) {
-        userSignup(userSignupRequest: { firstName: $firstName, lastName: $lastName, username: $username , description:$description,
+        userSignupGraph(userSignupRequest: { firstName: $firstName, lastName: $lastName, username: $username , description:$description,
         title: $title, company: $company, startedAtMonth:$startedAtMonth , startedAtYear:$startedAtYear, finishedAtMonth:$finishedAtMonth , finishedAtYear:$finishedAtYear}) {
             success
             message
@@ -67,6 +68,10 @@ export const UserRegister : FunctionComponent = () => {
             finishedAtYear: formState.finishedAtYear,
         },
         onCompleted: ({ userSignup }) => {
+            const userText = sessionStorage.getItem("user");
+            const user:User = userText && JSON.parse(userText);
+            user.isActive = true
+            sessionStorage.setItem("user", JSON.stringify(user));
             history.push("/skills");
         },
         onError: (error) => {

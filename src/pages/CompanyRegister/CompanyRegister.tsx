@@ -10,6 +10,7 @@ import {RegisterFormInput} from './CompanyRegister.type';
 import {useHistory} from "react-router-dom";
 import { gql } from "@apollo/client";
 import { useMutation } from "@apollo/client";
+import {User} from "../../models/User";
 
 interface RegisterQueryProps {
     name: string;
@@ -38,6 +39,10 @@ export const CompanyRegister : FunctionComponent = () => {
             description: formState.description,
         },
         onCompleted: ({ companySignup }) => {
+            const userText = sessionStorage.getItem("user");
+            const user:User = userText && JSON.parse(userText);
+            user.isActive = true
+            sessionStorage.setItem("user", JSON.stringify(user));
             history.push("/home");
         },
         onError: (error) => {

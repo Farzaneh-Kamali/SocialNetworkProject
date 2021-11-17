@@ -7,7 +7,9 @@ interface CompanyPostProps {
   user: User;
 }
 
+
 // const fetechedPost: Array<CPost> = [
+//
 //   {
 //     body: {
 //       text: "استخدام نیروی منابع انسانی در ایران",
@@ -24,6 +26,7 @@ interface CompanyPostProps {
 // ];
 
 export const CompanyPost = ({ user }: CompanyPostProps) => {
+  // cosnt post = fetechedPost
   const id=user.userId;
   const { error, data } = useQuery(GET_COMPANY_POSTS, {
     variables: { id },
@@ -36,14 +39,15 @@ export const CompanyPost = ({ user }: CompanyPostProps) => {
  
   // const posts = React.useMemo(
   //   () =>
-  //     data &&
-  //    [data].map((a: any, index: any) => (
+  //     // data &&
+  //    fetechedPost.map((a: any, index: any) => (
   //       <CompanyPostCard key={index.toString()} post={a} />
   //     )),
-  //   [data]
+  //   [fetechedPost]
   // );
 
   if (error) return <div>`Error! ${error.message}`;</div>;
-  return<div><button onClick={onclick}>click</button></div>
+  return <></>
+  // return<div><button onClick={onclick}>click</button></div>
   // return <div>{posts}</div>;
 };

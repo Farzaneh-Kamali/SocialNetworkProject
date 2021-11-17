@@ -37,6 +37,7 @@ const makeTagOption = (x: Array<Tag>) =>
     );
 
 export const Skills = () => {
+
     const [create_tag, { error }] = useMutation(CREATE_TAG_MUTATION);
     const history = useHistory();
 

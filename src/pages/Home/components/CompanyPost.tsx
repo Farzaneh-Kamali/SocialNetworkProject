@@ -16,7 +16,7 @@ const fetechedPost: Array<CPost> = [
       description:"SocialNetwork",
       isCompany:true,
       isActive:true,
-      img:""
+      img:"https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png"
     },
     posts: {
       content: "استخدام نیروی منابع انسانی در ایران",
@@ -31,7 +31,7 @@ const fetechedPost: Array<CPost> = [
     description:"SocialNetwork",
     isCompany:true,
     isActive:true,
-    img:""
+    img:"https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png"
   },
   posts: {
       content: "استخدام مدیر سئو",

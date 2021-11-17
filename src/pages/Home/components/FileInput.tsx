@@ -9,10 +9,15 @@ export const FileInput = ({ name, ...rest }: { name: string }) => {
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     try {
       if (e.target.files) {
-        console.log(values);
-        setFieldValue("video", undefined);
+        const file_size = e.target.files[0].size;
+       if (file_size < 9437184.00402009){
+         setFieldValue("video", undefined);
         setFieldValue("image", undefined);
         setFieldValue(name, e.target.files[0]);
+       }
+        else{
+          alert("حجم فایل انتخابی باید کمتر از 9 مگا بایت باشد !")
+        }
         
       }
       console.log(values.image , values.video);

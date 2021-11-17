@@ -10,7 +10,11 @@ interface IUserContext {
 const defaultUser: User = {
   userId: "",
   isCompany: false,
+  description: "",
+  name: "",
+  isActive: false,
 };
+
 const defaultUserContext: IUserContext = {
   user: defaultUser,
   setUser: () => {
@@ -24,7 +28,7 @@ export const useUserContext = () => useContext(UserContext);
 export const UserContextProvider: FC = ({ children }) => {
   const [user, setUser] = useState<User>(defaultUser);
 
-  const value = useMemo(() => ({ user, setUser }), [user]);
+  const value = useMemo(() => ({ user, setUser }), [user, setUser]);
   // const setNewUser = (newUser: User) => {
   //   !!newUser && setUser(newUser);
   //   console.log(!!newUser);

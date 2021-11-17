@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "../Buttun/Button";
-import { User } from "../UserCard/types/User.types";
+import { User } from "../../models/User";
 import { UserCard } from "../UserCard/UserCard";
 
 export const FollowCard = ({

@@ -1,76 +1,91 @@
 import React from "react";
 import { FollowReq } from "../FollowReq/FollowReq";
-import { Tag } from "../Tag/Tag.types";
+
 import { Tags } from "../Tag/Tags";
-import { User } from "../UserCard/types/User.types";
+import { User } from "../../models/User";
 import { UserProfile } from "../UserProfile/UserProfile";
+import { useQuery } from "@apollo/client";
+import { GET_SKILL } from "../../pages/Skills/Skills.query";
 
-const fetechedTag: Array<Tag> = [
-  { name: "work" },
-  { name: "business" },
-  { name: "hr" },
-  { name: "userinterface" },
-  { name: "digital" },
-  { name: "userexperience" },
-  { name: "ux" },
-  { name: "ui" },
-  { name: "freelance" },
-];
+// eslint-disable-next-line react-hooks/rules-of-hooks
 
-const fetechedConnectReq: Array<User> =  [
+const fetechedConnectReq: Array<User> = [
   {
-    id:"2",
+    userId: "2",
+    isCompany:false,
     name: "AmirBahador",
-    role: "Devops",
+    description: "Devops",
     img: "https://picsum.photos/id/2/40",
+    isActive: true
   },
   {
-    id:"3",
+    userId: "3",
+    isCompany:false,
     name: "Mehdi",
-    role: "FrontEnd Developer",
+    description: "FrontEnd Developer",
     img: "",
+    isActive: true
   },
   {
-    id:"4",
+    userId: "4",
+    isCompany:false,
     name: "Sina",
-    role: "BackEnd Developer",
+    description: "BackEnd Developer",
     img: "https://picsum.photos/id/175/40",
+    isActive: true
   },
   {
-    id:"5",
+    userId: "5",
+    isCompany:false,
     name: "Mehrdad",
-    role: "SEO",
+    description: "SEO",
     img: "https://picsum.photos/id/250/40",
+    isActive: true
   },
   {
-    id:"6",
+    userId: "6",
+    isCompany:false,
     name: "Neda",
-    role: "Manager",
+    description: "Manager",
     img: "",
+    isActive: true
   },
   {
-    id:"7",
+    userId: "7",
+    isCompany:false,
     name: "Mahour",
-    role: "UI/UX Designer",
+    description: "UI/UX Designer",
     img: "https://picsum.photos/id/1014/40",
+    isActive: true
   },
 ];
 
 const CardContainer = ({
   children,
   right,
+  user
 }: {
   children: JSX.Element | JSX.Element[];
   right: JSX.Element | JSX.Element[];
+  user:User;
 }) => {
+
+  const {
+    loading,
+    data: { getSkills: tag }={}}= useQuery(GET_SKILL, { variables: { id: user.userId } });
+    // data: { getSkills: tag }={}}= useQuery(GET_SKILL, { variables: { id: user.userId } , pollInterval:2000});
+
+  if (loading) return null;
+
+
   return (
     <div className="flex justify-center h-full main">
       {right}
       <div id="center" className="w-3/5 max-w-xl mx-3.5 mt-9">
         {children}
       </div>
-      <div id="left" className="w-1/5 max-w-xs">
-        <Tags Taglist={fetechedTag} />
+      <div id="left" className="w-1/5 max-w-xs mt-9">
+        <Tags Taglist={tag.skill} /> 
       </div>
     </div>
   );
@@ -78,14 +93,14 @@ const CardContainer = ({
 
 export const CardContainerWithFollow = ({
   children,
-  user
+  user,
 }: {
   children: JSX.Element | JSX.Element[];
   user: User;
 }) => (
-  <CardContainer
+  <CardContainer user={user}
     right={
-      <div id="right" className="w-1/5 max-w-xs ">
+      <div id="right" className="w-1/5 max-w-xs mt-9 ">
         <UserProfile user={user} />
         <FollowReq
           connecetlist={fetechedConnectReq}
@@ -102,14 +117,14 @@ export const CardContainerWithFollow = ({
 
 export const CardContainerWithoutFollow = ({
   children,
-  user
+  user,
 }: {
   children: JSX.Element | JSX.Element[];
   user: User;
 }) => (
-  <CardContainer
+  <CardContainer user={user}
     right={
-      <div id="right" className="w-1/5 max-w-xs ">
+      <div id="right" className="w-1/5 max-w-xs mt-9">
         <UserProfile user={user} />
       </div>
     }

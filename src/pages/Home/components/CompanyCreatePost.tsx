@@ -2,29 +2,27 @@ import { Field, Form, Formik } from "formik";
 import React from "react";
 import { Button } from "../../../components/Buttun/Button";
 import { Card } from "../../../components/Card/Card";
-import { User } from "../../../components/UserCard/types/User.types";
+import { User } from "../../../models/User";
 import { UserCard } from "../../../components/UserCard/UserCard";
 import { PostInput } from "./PostInput";
-import { TagItem } from "../../../components/Tag/TagItem";
 import { Tag } from "../../../components/Tag/Tag.types";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/client";
 import { C_CREATE_POST_MUTATION } from "../graphql/mutations";
-import { SelectTag } from "./SelectTag";
+import { CreatableMulti, Option } from "./SelectTag";
 
 interface CompanyCreatePostProps {
   user: User;
 }
 
+type FormValues = {
+  content: string;
+  tags?: string[];
+};
+
 const initialValues = {
-  text: "",
+  content: "",
   tags: [],
 };
-
-type FormValues = {
-  text: string;
-  tags: Array<string>;
-};
-
 const fetechedTag: Array<Tag> = [
   { name: "work" },
   { name: "business" },
@@ -36,53 +34,34 @@ const fetechedTag: Array<Tag> = [
   { name: "ui" },
   { name: "freelance" },
 ];
-const TagOptions = [
-  {
-    label: "Chinese",
-    value: "zh-CN"
-  },
-  {
-    label: "English (US)",
-    value: "en-US"
-  },
-  {
-    label: "English (GB)",
-    value: "en-GB"
-  },
-  {
-    label: "French",
-    value: "fr-FR"
-  },
-  {
-    label: "Spanish",
-    value: "es-ES"
-  }
-];
-// interface TagOption {
-//   readonly value: string;
-//   readonly label: string;
-// }
-// const TagOptions: readonly TagOption[] = fetechedTag.map((a, index) => ({
-//   value: `${a.name}`,
-//   label: `#${a.name}`,
-// }));
+const makeTagOption = (x: Array<Tag>) =>
+  x.map(
+    (a) =>
+      ({
+        value: `${a.name}`,
+        label: `#${a.name}`,
+      } as Option)
+  );
 
 export const CompanyCreatePost = ({ user }: CompanyCreatePostProps) => {
   const [createpost, { error }] = useMutation(C_CREATE_POST_MUTATION);
+
+  const taged = React.useMemo(() => makeTagOption(fetechedTag), [fetechedTag]);
+
   const onSubmit = (values: FormValues, onSubmitProps: any) => {
     console.log(values);
-    //addpost(values);
+    addpost(values.content, values.tags);
     onSubmitProps.resetForm();
   };
 
-  const addpost = (text: string, tags?: string) => {
+  const addpost = (content: string, tags?: string[]) => {
     createpost({
       variables: {
-        text: text,
+        content: content,
         tags: tags,
       },
     });
-    console.log(`this is text ${text}`);
+    console.log(`this is content ${content}`);
     if (error) {
       console.log(error);
     }
@@ -101,15 +80,12 @@ export const CompanyCreatePost = ({ user }: CompanyCreatePostProps) => {
 
               <PostInput title="درخواست نیرو ..." />
               <div dir="ltr" className="mb-4 mx-7">
-                <Field 
+                <Field
                   className="Select_Tag"
                   name="tags"
-                  options={TagOptions}
-                  component={SelectTag}
-                  placeholder="Select..."
-                  isMulti={true}
+                  options={taged}
+                  component={CreatableMulti}
                 />
-                
               </div>
 
               <div

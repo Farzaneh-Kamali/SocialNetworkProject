@@ -1,6 +1,6 @@
-import { gql } from "apollo-boost";
+import { gql } from  "@apollo/client"
 import { FC } from "react";
-import { useMutation } from "react-apollo";
+import { useMutation } from  "@apollo/client"
 import { useHistory } from "react-router-dom";
 
 interface QueryProps {

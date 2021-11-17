@@ -1,13 +1,22 @@
-import { gql } from "apollo-boost";
+import { gql } from  "@apollo/client";
 
 export const CREATE_POST_MUTATION = gql`
-  mutation createpost($text: String!, $file: Upload) {
-    createpost(text: $text, file: $file) {
-      text
-      file
-    }
+  mutation newUserPost ($content:String!,$file:Upload) {
+    newUserPost(newUserPostRequest:{content:$content , file:$file}){
+    success
+    message
+  }
   }
 `;
+
+export const UPLOAD_FILE_MUTATION = gql`
+  mutation upload ($file: Upload!) {
+    upload(file:$file){
+    url
+  }
+  }
+  `;
+
 
 export const UPDATE_LIKE_MUTATION = gql`
   mutation updatelike($postId: String!) {
@@ -18,11 +27,11 @@ export const UPDATE_LIKE_MUTATION = gql`
 `;
 
 export const C_CREATE_POST_MUTATION = gql`
-  mutation createpost($text: String!, $tags:String) {
-    createpost(text: $text, tag: $tags) {
-      text
-      tag
-    }
+  mutation companypost($content: String!, $tags:[String]!) {
+    newCompanyPost(newCompanyPostRequest:{content:$content,tags:$tags}){
+    success
+    message
+  }
   }
 `;
 

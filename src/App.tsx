@@ -6,13 +6,14 @@ import { Follow } from "./pages/Follow/Follow";
 import { Register } from "./pages/Register/Register";
 import NavBar from "./components/NavBar/NavBar";
 import { MessagePage } from "./pages/Message/MessagePage";
-import { ComponyHome } from "./pages/Home/ComponyHome";
-import {CompanyRegister} from "./pages/CompanyRegister/CompanyRegister";
+import { CompanyRegister } from "./pages/CompanyRegister/CompanyRegister";
+import { UserRegister } from "./pages/UserRegister/UserRegister";
+import { Skills } from "./pages/Skills/Skills";
+import { User } from "./models/User";
 
 interface AppProps {}
 
 interface AppState {}
-let loggedin: boolean;
 
 export const PrivateRoute: React.FC<{
   component: React.FC;
@@ -21,8 +22,13 @@ export const PrivateRoute: React.FC<{
   private?: boolean;
 }> = (props) => {
   const loginState = sessionStorage.getItem("loginState");
+  const userText = sessionStorage.getItem("user");
+  const user: User = userText && JSON.parse(userText);
 
-  return loginState === "loggedIn" ? (
+  return user == null ? (
+          <Route path={props.path} exact={props.exact} component={Login} />
+  )
+  : loginState === "loggedIn" && user.isActive ? (
     <>
       <NavBar />
       <Route
@@ -31,7 +37,7 @@ export const PrivateRoute: React.FC<{
         component={props.component}
       />
     </>
-  ) : props.private ? (
+  ) : !user.isActive || props.private ? (
     <Route path={props.path} exact={props.exact} component={Login} />
   ) : (
     <Route path={props.path} exact={props.exact} component={props.component} />
@@ -47,8 +53,10 @@ class App extends React.Component<AppProps, AppState> {
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/company_register" component={CompanyRegister} />
+          <Route exact path="/user_register" component={UserRegister} />
+          {/*<Route exact path="/skills" component={Skills} />*/}
+          <PrivateRoute exact path="/skills" component={Skills} />
           <PrivateRoute exact path="/home" component={Home} />
-          <PrivateRoute exact path="/companyhome" component={ComponyHome} />
           <PrivateRoute exact path="/message" component={MessagePage} />
           <PrivateRoute exact path="/follow" component={Follow} />
 

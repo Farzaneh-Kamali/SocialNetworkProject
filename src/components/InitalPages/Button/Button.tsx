@@ -4,9 +4,10 @@ import { useHistory } from 'react-router-dom';
 
 interface ButtonPropsType {
     name: string;
+    path: string;
 }
 
-export const ButtonPrimary = (props:ButtonPropsType) => {
+export const ButtonPrimary = (props:{name:string}) => {
     return (
         <div className="w-full mx-auto text-center button-primary-container">
             <button className="button button-primary" type="submit" >{ props.name }</button>
@@ -21,7 +22,7 @@ export const ButtonSecondary = (props:ButtonPropsType) => {
     const history = useHistory();
 
     const handleClick = () => {
-        history.push("/login");
+        history.push(props.path);
     }
 
     return (

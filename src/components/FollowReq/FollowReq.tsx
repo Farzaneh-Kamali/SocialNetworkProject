@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Card } from "../Card/Card";
-import { User } from "../UserCard/types/User.types";
+import { User } from "../../models/User";
 import { SeeMore } from "../MoreLink/SeeMore";
 import { FollowCard } from "./FollowCard";
 import "../Responsive.Style.scss";

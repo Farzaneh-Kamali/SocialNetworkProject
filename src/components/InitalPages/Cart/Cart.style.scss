@@ -1,7 +1,6 @@
 @import "./src/variables/variables.scss";
-
-.cart-container{
-    height: 100vh;
+.cart-container {
+    min-height: 100vh;
     width: 100vw;
     //left: 0;
     //top: 0;
@@ -10,15 +9,18 @@
     background: $backGroundColor;
     display: flex;
     justify-content: center;
-
     align-items: center;
 }
 
 .cart-initial-pages {
     //margin-top: 20px;
-    margin: 0;
-    padding: 0 50px;
+    //min-height: 75%;
+    min-height: 743px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 0 50px 22.5px 50px;
     width: 498px;
+    //height: auto;
     background: $whiteColor;
     border-radius: 0 24px 24px 0;
     display: flex;
@@ -26,10 +28,12 @@
     justify-content: center;
 }
 
-
 ///* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
 @media screen and (max-width: 498px) {
     .cart-initial-pages {
+        min-height: 100vh;
+        margin-top: 0;
+        margin-bottom: 0;
         width: 100%;
         height: 100%;
         border-radius: 0;

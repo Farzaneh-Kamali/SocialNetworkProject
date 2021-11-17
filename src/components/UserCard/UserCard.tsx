@@ -1,4 +1,4 @@
-import { User } from "./types/User.types";
+import { User } from "../../models/User";
 import Usericon from "../../images/Usericon.svg";
 import "./UserCard.Style.scss";
 
@@ -13,7 +13,7 @@ export const UserCard = ({
   componentname: string;
   image_size: ImageSize;
 }) => {
-  const { name, role, img } = user;
+  const { name, description, img } = user;
 
   return (
     <div className={`${componentname}_Container_Div || ""`}>
@@ -26,7 +26,7 @@ export const UserCard = ({
       </div>
       <div className={`${componentname}_Info_Div || ""`}>
         <div className={`${componentname}_Name`}>{name}</div>
-        <div className={`${componentname}_Role`}>{role}</div>
+        <div className={`${componentname}_Role`}>{description}</div>
       </div>
     </div>
   );

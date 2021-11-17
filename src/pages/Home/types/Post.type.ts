@@ -1,4 +1,4 @@
-import { User } from "../../../components/UserCard/types/User.types";
+import { User } from "../../../models/User";
 
 export type Post = {
   id:string;

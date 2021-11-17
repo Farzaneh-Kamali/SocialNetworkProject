@@ -30,7 +30,7 @@ export default function Navbar() {
     userSelected: false,
   });
   const [notificationState, setNotificationState] = useState("hidden");
-  const [notificationNumber, setNotificationNumber] = useState(5);
+  const [notificationNumber, setNotificationNumber] = useState(0);
 
   const message1: message = {
     id: 1,
@@ -85,10 +85,10 @@ export default function Navbar() {
         }}
         className={notificationState}
       >
-        <NotificationMessage key="1" message={message1}></NotificationMessage>
+        {/* <NotificationMessage key="1" message={message1}></NotificationMessage>
         <NotificationMessage key="2" message={message1}></NotificationMessage>
         <NotificationMessage key="3" message={message1}></NotificationMessage>
-        <NotificationMessage key="4" message={message1}></NotificationMessage>
+        <NotificationMessage key="4" message={message1}></NotificationMessage> */}
       </MessageNotifications>
     </div>
   );

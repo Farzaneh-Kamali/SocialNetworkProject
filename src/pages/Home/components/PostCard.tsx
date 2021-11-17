@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useMutation } from "react-apollo";
+import { useMutation } from "@apollo/client";
 import { Card } from "../../../components/Card/Card";
 import { ReadMore } from "../../../components/MoreLink/ReadMore";
-import { User } from "../../../components/UserCard/types/User.types";
+import { User } from "../../../models/User";
 import { UserCard } from "../../../components/UserCard/UserCard";
 import { ReactComponent as LikeSVG } from "../../../images/like.svg";
 import { UPDATE_LIKE_MUTATION } from "../graphql/mutations";
@@ -21,8 +21,8 @@ export const PostCard = ({ post, currentUser }: PostCardProps) => {
   const [currentLike, setCurrentLike] = useState(likes.length);
 
   const isliked = React.useMemo(
-    () => likes.includes(currentUser.id),
-    [currentUser.id, likes]
+    () =>currentUser.userId&& likes.includes(currentUser.userId),
+    [currentUser.userId, likes]
   );
 
   const onLikeClick = React.useCallback(() => {

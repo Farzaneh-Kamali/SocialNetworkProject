@@ -1,4 +1,8 @@
 export type User = {
-  userId: string;
+  userId: string | null;
+  description?: string;
+  name?: string;
+  isActive: boolean;
   isCompany: boolean;
+  img?: string;
 };

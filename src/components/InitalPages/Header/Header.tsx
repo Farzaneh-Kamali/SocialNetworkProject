@@ -10,3 +10,13 @@ export const Header = (props:{name:string;}) => {
         </div>
     );
 };
+
+export const SubHeader = (props:{name:string;}) => {
+    return (
+        <div className="w-full mx-auto text-center">
+            <h3 className="subheader-name">
+                {props.name}
+            </h3>
+        </div>
+    );
+};

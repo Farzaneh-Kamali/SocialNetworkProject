@@ -1,0 +1,188 @@
+@import "./src/variables/variables.scss";
+//  ----------------------------------- STRING INPUT
+.string_input {
+    //width: 75%;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.string_input input {
+    padding-right: 15px;
+    height: 40px;
+    width: 100%;
+    text-align: right;
+    outline: none;
+    border: 1px solid #D0D0D0;
+    box-sizing: border-box;
+    border-radius: 8px;
+    font-family: sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    transition: all 0.3s ease;
+}
+
+// Email Input
+.email_input {
+    //width: 75%;
+    align-items: center;
+    display: flex;
+    position: relative;
+    margin: 15px auto;
+}
+
+.email_input i {
+    left: 0;
+    padding: 3px;
+    position: absolute;
+    font-size: 20px;
+    color: $grayColor;
+}
+
+.email_input input {
+    padding-left: 40px;
+    height: 40px;
+    width: 100%;
+    outline: none;
+    text-align: left;
+    border: 1px solid #D0D0D0;
+    box-sizing: border-box;
+    border-radius: 8px;
+    font-family: sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    transition: all 0.3s ease;
+}
+
+//  -----------------------------------  PASSWORD INPUT
+.password_input {
+    //height: 40px;
+    //width: 75%;
+    align-items: center;
+    display: flex;
+    position: relative;
+    //border: 1px solid #61dafb;
+    //margin: 10px auto;
+    margin: 10px auto;
+    //display: flex;
+}
+
+.password_input .eyeIcon {
+    right: 0;
+    padding-right: 12px;
+    position: absolute;
+    font-size: 15px;
+    color: $grayColor;
+}
+
+.password_input .lockIcon {
+    //height: 100%;
+    //text-align: center;
+    left: 0;
+    padding: 3px;
+    position: absolute;
+    font-size: 20px;
+    color: $grayColor;
+    //color: $blueColor;
+}
+
+.password_input input {
+    padding-left: 40px;
+    height: 40px;
+    //height: 100%;
+    width: 100%;
+    outline: none;
+    text-align: left;
+    border: 1px solid #D0D0D0;
+    box-sizing: border-box;
+    border-radius: 8px;
+    font-family: sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    transition: all 0.3s ease;
+}
+
+//  ----------------------------------- CHECK BOX
+.checkbox_input {
+    //text-align: center;
+}
+
+.checkbox_input label {
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    height: fit-content;
+    margin-top: 15px;
+}
+
+.checkbox_input input[type=checkbox] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 29px;
+    height: 29px;
+    border: 1px solid #D0D0D0;
+    border-radius: 8px;
+}
+
+.checkbox_input input[type=checkbox]:checked {
+    background-color: $blueColor;
+}
+
+input[type=checkbox]:checked:after {
+    margin-right: 7px;
+    margin-top: 1px;
+    width: 3mm;
+    height: 5mm;
+    border: solid white;
+    border-width: 0 4px 4px 0;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    content: "";
+    display: inline-block;
+}
+
+.checkbox_input span {
+    color: $grayColor;
+    font-family: $fontM;
+    font-weight: 500;
+    font-size: 14px;
+    padding-right: 20px;
+    margin-top: 7px;
+}
+
+//  ----------------------------------- FOCUS
+.password_input:focus-within i {
+    color: $blueColor;
+}
+
+.email_input:focus-within i {
+    color: $blueColor;
+}
+
+input:focus {
+    border-color: $blueColor;
+}
+
+.eyeIcon {
+    cursor: pointer;
+}
+
+//  ----------------------------------- MEDIA
+
+/* If the screen size is 601px wide or more, set the font-size of <div> to 80px */
+
+//@media screen and (min-width: 601px) {
+//  .string_input input {
+//    font-size: 80px;
+//  }
+//}
+
+/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+
+@media screen and (max-width: 600px) {
+    .string_input input {
+        font-size: 12px;
+    }
+}

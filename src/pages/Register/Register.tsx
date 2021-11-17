@@ -5,14 +5,14 @@ import {Header} from "../../components/InitalPages/Header/Header";
 import {CheckBoxInput, EmailInput, PassInput} from "../../components/InitalPages/Input/Input";
 import {ButtonPrimary, ButtonSecondary} from "../../components/InitalPages/Button/Button";
 import "./Register.style.scss"
-import { Formik, Field, Form , FormikHelpers} from 'formik';
+import { Formik, Form , FormikHelpers} from 'formik';
 import {RegisterFormInput} from './Register.type';
 import {registerValidateSchema} from "./Register.validation";
 import {useHistory} from "react-router-dom";
-import {useMutation} from "react-apollo";
+import {useMutation} from  "@apollo/client"
 import {ErrorHandel} from "./components/error/Error";
-import {gql} from "apollo-boost";
-import {ErrorMessage, useField} from "formik";
+import {gql} from "graphql-tag";
+import {ErrorMessage} from "formik";
 import {Status} from "../../components/InitalPages/Description/Description";
 
 interface RegisterQueryProps {
@@ -31,6 +31,7 @@ const REGISTER_MUTATION = gql`
         }
     }
 `;
+
 
 export const Register : FunctionComponent = () => {
     const validation = registerValidateSchema()
@@ -92,7 +93,7 @@ export const Register : FunctionComponent = () => {
                 </Formik>
 
                 <Status name={"عضو هستم"} />
-                <ButtonSecondary name={"ورود"}/>
+                <ButtonSecondary name={"ورود"} path={"/login"}/>
             </Cart>
 
         </div>

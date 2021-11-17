@@ -1,77 +1,61 @@
-import { FieldProps } from "formik";
 import React from "react";
-import { ActionMeta, OnChangeValue } from "react-select";
 import CreatableSelect from "react-select/creatable";
-import { Tag } from "../../../components/Tag/Tag.types";
+import { ActionMeta, OnChangeValue, StylesConfig } from "react-select";
+import { FieldProps } from "formik";
 
-interface TagOption {
+export interface Option {
   readonly value: string;
   readonly label: string;
 }
-interface SelectTagProps extends FieldProps {
-  options: Array<Tag>;
-  isMulti?: boolean;
+
+interface CreatableMultiProps extends FieldProps {
+  options: readonly Option[];
   className?: string;
-  placeholder?: string;
 }
 
-export const SelectTag = ({
+const Style: StylesConfig<Option, true> = {
+  multiValue: (styles, { data }) => ({
+    ...styles,
+    backgroundColor: "#e9f0f8",
+  }),
+  multiValueLabel: (styles, { data }) => ({
+    ...styles,
+    fontSize: "12px",
+  }),
+};
+export const CreatableMulti = ({
   className,
-  placeholder,
   field,
-  form,
+  form:{setFieldValue},
   options,
-  isMulti = false,
-}: SelectTagProps) => {
-    const TagOptions: readonly TagOption[] = React.useMemo(
-      () =>
-        options.map((a, index) => ({
-          value: `${a}`,
-          label: `#${a}`,
-        })),
-      [options]
-    );
-  // const TagOptions = options.map(
-  //   (value) => { label: {`#${value.name}`} , value:`${value.name}`  }
-  // );
-
+}: CreatableMultiProps) => {
   const handleChange = (
-    // newValue: OnChangeValue<TagOption, true>,
-    // actionMeta: ActionMeta<TagOption>,
-    TagOptions: TagOption | TagOption[]
+    newValue: OnChangeValue<Option, true>,
+    actionMeta: ActionMeta<Option>
   ) => {
-    // console.group("Value Changed");
-    // console.log(newValue);
-    // console.log(`action: ${actionMeta.action}`);
-    // console.groupEnd();
-    console.log(options, TagOptions);
-    form.setFieldValue(
+    setFieldValue(
       field.name,
-      isMulti
-        ? (TagOptions as TagOption[]).map((item: TagOption) => item.value)
-        : (TagOptions as TagOption).value
+      (newValue as Option[]).map((item: Option) => item.value)
     );
   };
-  const getValue = () => {
-    if (TagOptions) {
-      return isMulti
-        ? TagOptions.filter(
-            (TagOptions) => field.value.indexOf(TagOptions) >= 0
-          )
-        : TagOptions.find((TagOptions) => TagOptions === field.value);
-    } else {
-      return isMulti ? [] : ("" as any);
-    }
-  };
+
+  const values = React.useMemo(() =>
+    field.value.map((x: string) => ({
+      label: `#${x}`,
+      value: x,
+      key: x,
+    }))
+  , [field.value]);
+
   return (
     <CreatableSelect
       className={className}
       name={field.name}
-      value={getValue()}
+      isMulti
       onChange={handleChange}
-      placeholder={placeholder}
-      options={TagOptions}
-      isMulti={isMulti}
+      options={options}
+      styles={Style}
+      value={values}
     />
   );
 };

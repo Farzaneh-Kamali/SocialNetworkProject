@@ -10,10 +10,9 @@
 }
 
 .User_Profile {
-    margin-top: 38px;
     height: auto;
-    background-image: linear-gradient(top, $lightBlue, $lightBlue 45%, transparent 45%, transparent 100%);
-    background-image: -webkit-linear-gradient(top, $lightBlue, $lightBlue 45%, transparent 45%, transparent 100%)
+    background-image: linear-gradient( top, $lightBlue, $lightBlue 45%, transparent 45%, transparent 100%);
+    background-image: -webkit-linear-gradient( top, $lightBlue, $lightBlue 45%, transparent 45%, transparent 100%);
 }
 
 .Connect {
@@ -41,7 +40,9 @@
 }
 
 .Tag {
-    margin-top: 38px;
+    position: sticky;
+    top: 36px;
+    align-self: flex-start;
     height: auto;
     min-height: 188px;
     background-color: $blueGrayColor;

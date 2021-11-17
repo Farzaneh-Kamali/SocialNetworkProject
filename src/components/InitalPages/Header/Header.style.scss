@@ -1,17 +1,28 @@
 @import "./src/variables/variables.scss";
-
-.header-name{
-  font-family: $fontM;
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 38px;
-  color: $blackColor;
-  margin-bottom: 10%;
+.header-name {
+    margin-top: 22.5px;
+    font-family: $fontM;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 38px;
+    color: $blackColor;
+    margin-bottom: 15.5px;
 }
 
+.subheader-name{
+    font-family: $fontM;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 38px;
+    color: $blackColor;
+    margin-bottom: 50px;
+    //margin-bottom: 25.5px;
+
+}
 /* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+
 @media screen and (max-width: 600px) {
-  .header-name {
-    font-size: 20px;
-  }
+    .header-name {
+        font-size: 20px;
+    }
 }

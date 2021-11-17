@@ -9,8 +9,8 @@ export const PostInput = ({ title }: { title: string }) => {
         <img src={EditIcon} alt="" />
         <Field
           as="textarea"
-          id="text"
-          name="text"
+          id="content"
+          name="content"
           className="w-full ml-2 mr-2 overflow-hidden text-base font-light text-black outline-none resize-none focus:text-black-600"
           placeholder={title}
         />

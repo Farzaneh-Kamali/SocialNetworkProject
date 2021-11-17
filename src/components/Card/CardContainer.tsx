@@ -72,7 +72,7 @@ const CardContainer = ({
 
   const {
     loading,
-    data: { getSkills: tag }={}}= useQuery(GET_SKILL, { variables: { id: user.userId } , pollInterval:2000});
+    data: { getSkills: tag }={}}= useQuery(GET_SKILL, { variables: { id: user.userId } });
 
   if (loading) return null;
 

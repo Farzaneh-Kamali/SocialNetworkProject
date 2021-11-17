@@ -11,6 +11,7 @@ import {registerValidateSchema} from "./UserRegister.validation";
 import {useHistory} from "react-router-dom";
 import { gql } from "@apollo/client";
 import { useMutation } from "@apollo/client";
+import { User } from '../../models/User';
 
 
 interface RegisterQueryProps {
@@ -67,6 +68,10 @@ export const UserRegister : FunctionComponent = () => {
             finishedAtYear: formState.finishedAtYear,
         },
         onCompleted: ({ userSignup }) => {
+            const userText = sessionStorage.getItem("user");
+            const user:User = userText && JSON.parse(userText);
+            user.isActive = true
+            sessionStorage.setItem("user", JSON.stringify(user));
             history.push("/skills");
         },
         onError: (error) => {

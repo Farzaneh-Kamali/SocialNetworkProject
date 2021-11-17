@@ -10,7 +10,7 @@ import {RegisterFormInput} from './CompanyRegister.type';
 import {useHistory} from "react-router-dom";
 import { gql } from "@apollo/client";
 import { useMutation } from "@apollo/client";
-import {User} from "../../models/User";
+import { User } from '../../models/User';
 
 interface RegisterQueryProps {
     name: string;
